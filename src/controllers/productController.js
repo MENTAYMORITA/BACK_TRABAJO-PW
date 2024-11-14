@@ -1,4 +1,38 @@
+import Product from '../models/product.js';
+import ProductCategory from '../models/productCategory.js';
 import ProductService from '../services/productService.js';
+
+
+const findByCategory = async (req, res) => {
+    try {
+        const products = await Product.findAll({
+            include: [
+                {
+                    model: ProductCategory,
+                    attributes: ['name']
+                }
+            ],
+            attributes: ['name', 'imageUrl', 'code', 'stock', 'priceUSD', 'pricePEN'],
+            order: [[ProductCategory, 'name', 'ASC']]
+        });
+
+        const result = products.map(product => ({
+            categoria: product.ProductCategory.name, 
+            producto: product.name,                  
+            imageUrl: product.imageUrl,             
+            code: product.code,                      
+            stock: product.stock,                    
+            priceUSD: product.priceUSD,         
+            pricePEN: product.pricePEN               
+        }));
+
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
 
 const findAll = async (req, res) => {
     try {
@@ -48,4 +82,4 @@ const remove = async (req, res) => {
     }
 };
 
-export default { findAll, findOne, create, update, remove };
+export default { findAll, findOne, create, update, remove, findByCategory };
