@@ -60,10 +60,6 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING(50),
         allowNull: true,
     },
-    category: {
-        type: DataTypes.STRING(50),
-        allowNull: true,
-    },
     length: {
         type: DataTypes.STRING(50),
         allowNull: true,

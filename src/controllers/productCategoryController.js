@@ -21,12 +21,14 @@ const findOne = async (req, res) => {
 
 const create = async (req, res) => {
     try {
+        console.log("Datos recibidos:", req.body); // Para verificar los datos
         const result = await productCategoryService.create(req.body);
         return res.status(201).json(result);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 };
+
 
 const update = async (req, res) => {
     try {

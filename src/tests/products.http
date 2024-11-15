@@ -1,0 +1,41 @@
+GET http://localhost:3001/products/1
+#######
+
+GET https://mitchelmrtp-cost-2024-api.azurewebsites.net/productCategory
+
+#######
+
+GET http://localhost:3001/productCategory
+
+#######
+POST https://mitchelmrtp-cost-2024-api.azurewebsites.net/prouctCategory/
+Content-Type: application/json
+
+{
+    "name": "Laptops Gaming",
+    
+}
+
+#######
+POST http://localhost:3001/productCategory
+Content-Type: application/json
+
+{
+  "name": "Nueva Categoría5"
+}
+
+
+######
+
+PUT http://localhost:3001/alumno
+Content-Type: application/json
+
+{
+    "id": 2,
+    "nombre": "Ana Lucia",
+    "apellido": "Mendez",
+    "curso": "Derecho Penal"
+}
+
+######
+DELETE http://localhost:3001/alumno/1

@@ -9,8 +9,17 @@ const findOne = async (id) => {
 };
 
 const create = async (data) => {
+    const { category_id } = data;
+
+    const categoryExists = await ProductCategory.findByPk(category_id);
+    if (!categoryExists) {
+        throw new Error('La categoría proporcionada no existe');
+    }
+
     return await Product.create(data);
 };
+
+
 
 const update = async (id, data) => {
     const product = await Product.findByPk(id);
