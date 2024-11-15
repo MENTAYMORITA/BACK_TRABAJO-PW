@@ -5,7 +5,6 @@ import ProductService from '../services/productService.js';
 
 const findByCategory = async (req, res) => {
     try {
-<<<<<<< HEAD
       const { category } = req.params; // Obtener la categoría desde los parámetros de la URL
       const products = await Product.findAll({
         include: [
@@ -34,34 +33,6 @@ const findByCategory = async (req, res) => {
     }
   };
   
-=======
-        const products = await Product.findAll({
-            include: [
-                {
-                    model: ProductCategory,
-                    attributes: ['name']
-                }
-            ],
-            attributes: ['name', 'imageUrl', 'code', 'stock', 'priceUSD', 'pricePEN'],
-            order: [[ProductCategory, 'name', 'ASC']]
-        });
-
-        const result = products.map(product => ({
-            categoria: product.ProductCategory.name, 
-            producto: product.name,                  
-            imageUrl: product.imageUrl,             
-            code: product.code,                      
-            stock: product.stock,                    
-            priceUSD: product.priceUSD,         
-            pricePEN: product.pricePEN               
-        }));
-
-        return res.status(200).json(result);
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-};
->>>>>>> 5cfcf1867ff4048498f64e1f885f32b276bcea9d
 
 
 
