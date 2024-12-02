@@ -1,36 +1,35 @@
-// models/ProductSale.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
+import Product from './product.js';
 
-module.exports = (sequelize, DataTypes) => {
-  const ProductSale = sequelize.define('ProductSale', {
+const ProductSale = sequelize.define('ProductSale', {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
     product_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Product,
+            key: 'id',
+        },
     },
     sale_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
+        type: DataTypes.DATE,
+        allowNull: false,
     },
     quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      comment: 'Cantidad vendida en esta venta'
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
-  }, {
+}, {
     tableName: 'product_sales',
-    timestamps: false // No createdAt/updatedAt fields
-  });
+    timestamps: false,  // Sin timestamps (createdAt/updatedAt)
+});
 
-  // Associations
-  ProductSale.belongsTo(sequelize.models.Product, {
-    foreignKey: 'product_id',
-    as: 'product' // Alias for accessing the associated product
-  });
+// Relaciones
+ProductSale.belongsTo(Product, { foreignKey: 'product_id' });
 
-  return ProductSale;
-};
+export default ProductSale;

@@ -1,6 +1,7 @@
 // models/OrderItem.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
 
-module.exports = (sequelize, DataTypes) => {
     const OrderItem = sequelize.define('OrderItem', {
       id: {
         type: DataTypes.INTEGER,
@@ -43,6 +44,6 @@ module.exports = (sequelize, DataTypes) => {
       as: 'product' // Alias for accessing the associated product
     });
   
-    return OrderItem;
-  };
+    export default OrderItem;
+
   

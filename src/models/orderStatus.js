@@ -1,29 +1,19 @@
-// models/OrderStatus.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
 
-module.exports = (sequelize, DataTypes) => {
-    const OrderStatus = sequelize.define('OrderStatus', {
-      id: {
+const OrderStatus = sequelize.define('OrderStatus', {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
-      },
-      status: {
-        type: DataTypes.STRING,
+        autoIncrement: true,
+    },
+    name: {
+        type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
-      }
-    }, {
-      tableName: 'order_statuses',
-      timestamps: false // No createdAt/updatedAt fields
-    });
-  
-    // Associations
-    // An OrderStatus can be associated with many Orders
-    OrderStatus.hasMany(sequelize.models.Order, {
-      foreignKey: 'status_id',
-      as: 'orders'
-    });
-  
-    return OrderStatus;
-  };
-  
+    },
+}, {
+    tableName: 'order_statuses',
+    timestamps: false,  // Sin timestamps (createdAt/updatedAt)
+});
+
+export default OrderStatus;
