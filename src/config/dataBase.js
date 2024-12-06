@@ -2,7 +2,7 @@ import Sequelize from 'sequelize'
 
 const hostname = '127.0.0.1'
 const username = 'postgres'
-const password = 'asuna@3101'
+const password = 'contraseña'
 const database = 'impacto'
 const port = 5432
 const dialect = 'postgres'
